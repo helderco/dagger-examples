@@ -8,14 +8,13 @@ Try with::
 
 import sys
 
-import anyio
 import dagger
 
 
-async def main(args: list[str]):
+def main(args: list[str]):
     # Tip: If you want to see the output from the engine, use
     # `dagger.Connection(dagger.Config(log_output=sys.stderr))`
-    async with dagger.Connection() as client:
+    with dagger.Connection() as client:
         # build container with cowsay entrypoint
         # note: this is reusable, no request is made to the server
         ctr = (
@@ -27,10 +26,10 @@ async def main(args: list[str]):
 
         # run cowsay with requested message
         # note: queries are executed only on coroutines
-        result = await ctr.exec(args).stdout().contents()
+        result = ctr.exec(args).stdout().contents()
 
         print(result)
 
 
 if __name__ == "__main__":
-    anyio.run(main, sys.argv[1:])
+    main(sys.argv[1:])
