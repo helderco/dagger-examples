@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "dagger-examples"
+version = "0.1.0"
+description = "Examples using the Dagger Python SDK"
+license = "Apache-2.0"
+authors = ["Helder Correia <174525+helderco@users.noreply.github.com>"]
+readme = "README.md"
+homepage = "https://dagger.io"
+documentation = "https://docs.dagger.io"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dagger = {git = "https://github.com/dagger/dagger.git", rev = "main", subdirectory = "sdk/python"}
+
+[tool.poetry.scripts]
+test = "python say.py Hello"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
