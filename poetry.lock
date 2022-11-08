@@ -158,7 +158,7 @@ typer = {version = ">=0.6.1", extras = ["all"]}
 type = "git"
 url = "https://github.com/dagger/dagger.git"
 reference = "python-sync"
-resolved_reference = "abb964dc6d27599605ac04e67ff109c7f63db6a6"
+resolved_reference = "a1c2d830987d0400f42194c50fc6ab4a3b140ddd"
 subdirectory = "sdk/python"
 [[package]]
 name = "exceptiongroup"
