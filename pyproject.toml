@@ -10,7 +10,7 @@ documentation = "https://docs.dagger.io"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-dagger = {git = "https://github.com/dagger/dagger.git", rev = "python-sync", subdirectory = "sdk/python"}
+dagger-io = {version = "^0.1.0a1", allow-prereleases = true}
 
 [tool.poetry.scripts]
 test = "python say.py Hello"
