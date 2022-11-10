@@ -6,11 +6,11 @@ license = "Apache-2.0"
 authors = ["Helder Correia <174525+helderco@users.noreply.github.com>"]
 readme = "README.md"
 homepage = "https://dagger.io"
-documentation = "https://docs.dagger.io"
+documentation = "https://docs.dagger.io/sdk/python"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-dagger-io = {version = "^0.1.0a1", allow-prereleases = true}
+dagger-io = ">=0.1.1"
 
 [tool.poetry.scripts]
 test = "python say.py Hello"

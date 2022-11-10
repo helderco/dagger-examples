@@ -139,7 +139,7 @@ test = ["flake8 (==3.7.8)", "hypothesis (==3.55.3)"]
 
 [[package]]
 name = "dagger-io"
-version = "0.1.0a1"
+version = "0.1.1"
 description = "A client package for running Dagger pipelines in Python."
 category = "main"
 optional = false
@@ -315,7 +315,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.140.2"
+version = "0.141.0"
 description = "A library for creating GraphQL APIs"
 category = "main"
 optional = false
@@ -396,7 +396,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f3e645df1d14fb1c25c6ee8680670af83a677ca074b2bacbc2c01b689a479bcc"
+content-hash = "1250a4843d1a5a90f2b7a3cac47793a3e9009dffb2de55552bf069c9c0a338b3"
 
 [metadata.files]
 aiohttp = [
@@ -533,8 +533,8 @@ commonmark = [
     {file = "commonmark-0.9.1.tar.gz", hash = "sha256:452f9dc859be7f06631ddcb328b6919c67984aca654e5fefb3914d54691aed60"},
 ]
 dagger-io = [
-    {file = "dagger_io-0.1.0a1-py3-none-any.whl", hash = "sha256:9b029e87248127bc30b70ccb256ba20be988692dc7b334cec23b8fdd6da9d05b"},
-    {file = "dagger_io-0.1.0a1.tar.gz", hash = "sha256:8ce2b78bd7320ebb27455f495b1cdfb93351ffaed51cc6da365dae1d2474dea5"},
+    {file = "dagger_io-0.1.1-py3-none-any.whl", hash = "sha256:dcd4e11a40f09124425d0f593b82cc1f6796dd1eb63c9b6450bd2012c6b515ef"},
+    {file = "dagger_io-0.1.1.tar.gz", hash = "sha256:61d2449d433a1b3186ea6301c06e0816a3e66e3cb00b6553bf3f2c2bf5054cc9"},
 ]
 exceptiongroup = [
     {file = "exceptiongroup-1.0.1-py3-none-any.whl", hash = "sha256:4d6c0aa6dd825810941c792f53d7b8d71da26f5e5f84f20f9508e8f2d33b140a"},
@@ -722,8 +722,8 @@ sniffio = [
     {file = "sniffio-1.3.0.tar.gz", hash = "sha256:e60305c5e5d314f5389259b7f22aaa33d8f7dee49763119234af3755c55b9101"},
 ]
 strawberry-graphql = [
-    {file = "strawberry_graphql-0.140.2-py3-none-any.whl", hash = "sha256:ba7286b9dd19adc4c6f440b3f169781bfc5cd59d384118b7ef5164100d730b3d"},
-    {file = "strawberry_graphql-0.140.2.tar.gz", hash = "sha256:347e819da4ff6edffadc0efc642009ba2d26ecbcb5c5dce5e94ee13fa1950c56"},
+    {file = "strawberry_graphql-0.141.0-py3-none-any.whl", hash = "sha256:fd113cb33d865bb9b18bb8cb2e548083d291a27b5338e582a14c4bda0d8c817c"},
+    {file = "strawberry_graphql-0.141.0.tar.gz", hash = "sha256:5648d7357681fe2c24af0711733fc0a5a02a757bdc0065a891d3f8af27ec9c4b"},
 ]
 typer = [
     {file = "typer-0.7.0-py3-none-any.whl", hash = "sha256:b5e704f4e48ec263de1c0b3a2387cd405a13767d2f907f44c1a08cbad96f606d"},
