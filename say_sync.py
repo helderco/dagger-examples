@@ -3,7 +3,7 @@ Simple example using cowsay.
 
 Try with::
 
-    $ python say.py "Simple is better than complex"
+    $ python say_sync.py "Simple is better than complex"
 """
 
 import sys
