@@ -29,9 +29,9 @@ def main(args: list[str]):
 
             # run cowsay with requested message
             # note: queries are executed only on coroutines
-            result = ctr.exec(args).stdout().contents()
+            result = ctr.exec(args).stdout()
 
-            print(result)
+    print(result)
 
 
 if __name__ == "__main__":

@@ -4,38 +4,40 @@ Run tests for a single Python version.
 
 import anyio
 import dagger
+from rich.console import Console
+
+console = Console()
 
 
 async def test(repo_url: str):
-    async with dagger.Connection() as client:
-        repo = client.git(repo_url)
+    with console.status("Connecting engine...") as status:
+        async with dagger.Connection() as client:
+            status.update("Running tests...")
 
-        # get reference to the project's directory
-        src_id = await repo.branch("master").tree().id()
+            repo = client.git(repo_url).branch("master").tree()
 
-        python = (
-            client.container()
-            .from_("python:3.10-slim-buster")
+            python = (
+                client.container()
+                .from_("python:3.10-slim-buster")
 
-            # mount cloned repository into image
-            .with_mounted_directory("/src", src_id)
+                # mount cloned repository into image
+                .with_mounted_directory("/src", repo)
 
-            # set current working directory for next commands
-            .with_workdir("/src")
+                # set current working directory for next commands
+                .with_workdir("/src")
 
-            # install test dependencies
-            .exec(["pip", "install", "-e", ".[test]"])
+                # install test dependencies
+                .exec(["pip", "install", "-e", ".[test]"])
 
-            # run tests
-            .exec(["pytest", "tests"])
-        )
+                # run tests
+                .exec(["pytest", "tests"])
+            )
 
-        # execute
-        await python.exit_code()
+            # execute
+            await python.exit_code()
 
-        print("Tests succeeded!")
+    console.print("Tests succeeded ✓", style="bold green")
 
 
-if __name__ == "__main__":
-    # Using the popular FastAPI library as an example
-    anyio.run(test, "https://github.com/tiangolo/fastapi")
+# Using the popular FastAPI library as an example
+anyio.run(test, "https://github.com/tiangolo/fastapi")

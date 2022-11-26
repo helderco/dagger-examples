@@ -5,44 +5,45 @@ Run tests for multiple Python versions.
 import anyio
 import dagger
 
+from rich.console import Console
+
+console = Console()
+
 
 async def test(repo_url: str):
     versions = ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
-    async with dagger.Connection() as client:
-        repo = client.git(repo_url)
+    with console.status("Connecting to engine...") as status:
+        async with dagger.Connection() as client:
+            repo = client.git(repo_url).branch("master").tree()
 
-        # get reference to the project's directory
-        src_id = await repo.branch("master").tree().id()
+            for version in versions:
+                console.log(f"Starting tests for Python {version}")
 
-        for version in versions:
-            python = (
-                client.container()
-                .from_(f"python:{version}-slim-buster")
+                status.update(f"Testing Python {version}")
 
-                # mount cloned repository into image
-                .with_mounted_directory("/src", src_id)
+                python = (
+                    client.container()
+                    .from_(f"python:{version}-slim-buster")
 
-                # set current working directory for next commands
-                .with_workdir("/src")
+                    # mount cloned repository into image
+                    .with_mounted_directory("/src", repo)
 
-                # install test dependencies
-                .exec(["pip", "install", "-e", ".[test]"])
+                    # set current working directory for next commands
+                    .with_workdir("/src")
 
-                # run tests
-                .exec(["pytest", "tests"])
-            )
+                    # install test dependencies
+                    .exec(["pip", "install", "-e", ".[test]"])
 
-            print(f"Starting tests for Python {version}")
+                    # run tests
+                    .exec(["pytest", "tests"])
+                )
 
-            # execute
-            await python.exit_code()
+                # execute
+                await python.exit_code()
 
-            print(f"Tests for Python {version} succeeded!")
-
-        print("All tasks have finished")
+    console.print("All tests succeeded ✓", style="bold green")
 
 
-if __name__ == "__main__":
-    # Using the popular FastAPI library as an example
-    anyio.run(test, "https://github.com/tiangolo/fastapi")
+# Using the popular FastAPI library as an example
+anyio.run(test, "https://github.com/tiangolo/fastapi")
