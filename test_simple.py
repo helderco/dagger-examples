@@ -18,7 +18,7 @@ async def test(repo_url: str):
 
             python = (
                 client.container()
-                .from_("python:3.10-slim-buster")
+                .from_("python:3.11-slim-buster")
 
                 # mount cloned repository into image
                 .with_mounted_directory("/src", repo)
@@ -27,10 +27,10 @@ async def test(repo_url: str):
                 .with_workdir("/src")
 
                 # install test dependencies
-                .exec(["pip", "install", "-e", ".[test]"])
+                .with_exec(["pip", "install", "-e", ".[test]"])
 
                 # run tests
-                .exec(["pytest", "tests"])
+                .with_exec(["pytest", "tests"])
             )
 
             # execute

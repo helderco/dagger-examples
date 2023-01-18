@@ -23,16 +23,15 @@ def main(args: list[str]):
             ctr = (
                 client.container()
                 .from_("python:alpine")
-                .exec(["pip", "install", "cowsay"])
+                .with_exec(["pip", "install", "cowsay"])
                 .with_entrypoint(["cowsay"])
             )
 
             # run cowsay with requested message
             # note: queries are executed only on coroutines
-            result = ctr.exec(args).stdout()
+            result = ctr.with_exec(args).stdout()
 
     print(result)
 
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
+main(sys.argv[1:])

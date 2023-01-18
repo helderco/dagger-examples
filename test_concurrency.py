@@ -26,8 +26,8 @@ async def test(repo_url: str):
                     .from_(f"python:{version}-slim-buster")
                     .with_mounted_directory("/src", repo)
                     .with_workdir("/src")
-                    .exec(["pip", "install", "-e", ".[test]"])
-                    .exec(["pytest", "tests"])
+                    .with_exec(["pip", "install", "-e", ".[test]"])
+                    .with_exec(["pytest", "tests"])
                 )
 
                 await python.exit_code()

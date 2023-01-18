@@ -29,7 +29,7 @@ async def build():
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
 
         # get reference to the local project
-        src = client.host().workdir()
+        src = client.host().directory(".")
 
         # create empty directory to put build outputs
         outputs = client.directory()
@@ -54,7 +54,7 @@ async def build():
                 .with_env_variable("GOARCH", goarch)
 
                 # build application
-                .exec(["go", "build", "-o", path])
+                .with_exec(["go", "build", "-o", path])
             )
 
             # add build artifact to outputs
